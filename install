@@ -1,0 +1,29 @@
+#!/bin/sh
+
+cwd=`pwd`
+BACKUP_DIR=$HOME/.backup
+echo "Checking $BACKUP_DIR directory (This check is broken on zsh but should work on bash)"
+while [ -d $BACKUP_DIR ]
+do
+  BACKUP_DIR="$BACKUP_DIR"_"$RANDOM"
+  echo "the backup folder already exists trying $BACKUP_DIR instead"
+done
+
+mkdir $BACKUP_DIR
+
+echo "backing up existing dot files."
+for each in `ls -lad \.* | grep ^- | rev | cut -w -f 1 | rev`
+do
+  if [ -f ~/$each ]; then
+    mv ~/$each $BACKUP_DIR/$each
+  fi
+  ln -s ${cwd}/$each ${HOME}/${each}
+done
+
+echo "Do you wish to remove all dotfiles backed up in the $BACKUP_DIR directory?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) rm -frd $BACKUP_DIR; break;;
+        No ) break;;
+    esac
+done
