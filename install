@@ -1,5 +1,38 @@
 #!/bin/sh
 
+
+
+# Initial Mac Setup
+echo "Installing developer software"
+
+# install xcode
+Xcode-select —install
+
+# install Homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# install cask
+brew install cask
+
+#install textmate
+brew install --cask textmate
+
+# Install iterm2
+brew install --cask iterm2
+
+#install VS Code
+brew install --cask visual-studio-code
+
+#install git
+brew install git
+
+brew install coreutils curl
+
+git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
+
+# Install dotfiles
 cwd=`pwd`
 BACKUP_DIR=$HOME/.backup
 echo "Checking $BACKUP_DIR directory (This check is broken on zsh but should work on bash)"
