@@ -1,7 +1,5 @@
 #!/bin/sh
 
-
-
 # Initial Mac Setup
 echo "Installing developer software"
 
@@ -28,14 +26,28 @@ brew install --cask visual-studio-code
 #install git
 brew install git
 
+# install asdf dependencies
 brew install coreutils curl
 
+# install asdf
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
+
+# initialize asdf
+. "$HOME/.asdf/asdf.sh"
+
+# add nodejs plugin to asdf
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+
+# install nodejs latest
+asdf install nodejs latest
+asdf global nodejs latest
+# install pnpm
+npm install -g pnpm
 
 # Install dotfiles
 cwd=`pwd`
 BACKUP_DIR=$HOME/.backup
-echo "Checking $BACKUP_DIR directory (This check is broken on zsh but should work on bash)"
+echo "Checking $BACKUP_DIR directory"
 while [ -d $BACKUP_DIR ]
 do
   BACKUP_DIR="$BACKUP_DIR"_"$RANDOM"
