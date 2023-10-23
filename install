@@ -45,6 +45,9 @@ asdf global nodejs latest
 npm install -g pnpm
 
 # Install dotfiles
+git clone https://github.com/cliff76/mydotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+
 cwd=`pwd`
 BACKUP_DIR=$HOME/.backup
 echo "Checking $BACKUP_DIR directory"
