@@ -7,6 +7,8 @@ brew "git"
 cask "iterm2"
 # General-purpose text editor
 cask "textmate"
+# Docker Desktop
+cask "docker"
 # Open-source code editor
 cask "visual-studio-code"
 vscode "eamodio.gitlens"
