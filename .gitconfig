@@ -3,3 +3,6 @@
 	email = 270462+cliff76@users.noreply.github.com
 [core]
 	autocrlf = input
+[rebase]
+	updateRefs = true
+	autostash = true
